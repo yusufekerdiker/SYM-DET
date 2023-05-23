@@ -14,7 +14,12 @@ public class Room : MonoBehaviour
             if(enemies[i] != null)
                 initialPosition[i] = enemies[i].transform.position;
         }
+
+        //Deactivate rooms
+        if (transform.GetSiblingIndex() != 0)
+            ActivateRoom(false);
     }
+    
     public void ActivateRoom(bool _status)
     {
         //Activate/deactivate enemies

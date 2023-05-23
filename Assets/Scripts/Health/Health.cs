@@ -88,11 +88,11 @@ public class Health : MonoBehaviour
     //Respawn
     public void Respawn()
     {
-        dead = false;
         AddHealth(startingHealth);
         anim.ResetTrigger("die");
         anim.Play("Idle");
         StartCoroutine(Invunerability());
+        dead = false;
 
         //Activate all attached component classes
         foreach (Behaviour component in components)
