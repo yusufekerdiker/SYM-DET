@@ -1,3 +1,4 @@
+/* 
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -29,4 +30,46 @@ public class Door : MonoBehaviour
             }
         }
     }
+} 
+*/
+
+using UnityEngine;
+
+public class Door : MonoBehaviour
+{
+    public bool playerIsClose;
+    public NPC npc;
+    public LevelManager levelManager;
+
+    private void Update()
+    {
+        if (playerIsClose && npc.dialogueComplete)
+        {
+            if (levelManager != null)
+            {
+                levelManager.LoadNextLevel();
+            }
+            else
+            {
+                Debug.LogWarning("LevelManager not assigned in Door script.");
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerIsClose = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerIsClose = false;
+        }
+    }
 }
+
